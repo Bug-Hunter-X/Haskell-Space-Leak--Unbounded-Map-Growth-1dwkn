@@ -1,0 +1,1 @@
+This code suffers from a space leak.  The `Data.Map` is updated in each iteration, but old versions aren't garbage collected because of the `keep` function.  The `keep` function adds the element to a `Map`, but it never removes them, causing the map to grow unbounded and consume ever increasing amounts of memory.
